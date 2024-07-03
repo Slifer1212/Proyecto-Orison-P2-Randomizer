@@ -12,35 +12,50 @@
             private Random rnd = new Random();
 
             private static List<string> nombresSeleccionados = new List<string>();
+            private static List<string> desarrolladoresEnVivo = new List<string>();
+            private static List<string> facilitadorEjercicio = new List<string>();
 
             public Seleccionador(List<string> estudiantes)
             {
                 listado_Estudiantes = estudiantes;
             }
 
-            public void seleccionadorEstudiantes()
+            public void mostrarEstudiante()
             {
                if (listado_Estudiantes.Count < 2 )
                {
                     WriteLine("No hay suficientes estudiantes");
                     return;
                }
+               string primerEstudiante = seleccionadorEstudiante(listado_Estudiantes , desarrolladoresEnVivo);
+               string segundoEstudiante = seleccionadorEstudiante (listado_Estudiantes , facilitadorEjercicio , primerEstudiante);
 
-                int primerEstudianteIndex = rnd.Next(listado_Estudiantes.Count);
-                string primerEstudiante = listado_Estudiantes[primerEstudianteIndex];
-                listado_Estudiantes.RemoveAt(primerEstudianteIndex);
-                
-                int segundoEstudianteIndex = rnd.Next(listado_Estudiantes.Count);
-                string segundoEstudiante = listado_Estudiantes[segundoEstudianteIndex];
-                listado_Estudiantes.RemoveAt(segundoEstudianteIndex);
-                
                 nombresSeleccionados.Add($"Programador en vivo,{primerEstudiante}");
                 nombresSeleccionados.Add($"Facilitador ejercicio,{segundoEstudiante}");
                 
                 WriteLine($"Programador en vivo: {primerEstudiante}");Thread.Sleep(2000);
                 WriteLine($"Facilitador ejercicio: {segundoEstudiante}");Thread.Sleep(2000);
             } 
-            public void mostrarEstudiantes()
+
+            private string seleccionadorEstudiante(List<string>estudiantes , List<string> historial, string estudiante_excluido = null)
+            {
+                List<string> estudiante_disponible = new List<string>(estudiantes);
+
+                estudiante_disponible.RemoveAll(estudiante => historial.Contains(estudiante) || 
+                estudiante == estudiante_excluido);
+
+                if(estudiante_disponible.Count == 0)
+                {
+                    throw new Exception("No hay suficientes estudiantes");
+                }
+                int estudianteIndex = rnd.Next(estudiante_disponible.Count);
+                string seleccionado = estudiante_disponible[estudianteIndex];
+                
+                return seleccionado;
+            }
+
+            
+            public void listaEstudiantes()
             {
                 Clear();
 
@@ -114,9 +129,6 @@
                     ReadKey(true);
                 }
             }
-
-
-
             public void generarCSV()
             {
                 Clear();

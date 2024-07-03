@@ -93,7 +93,7 @@ elige la música de tu preferencia";
         {
             Clear();
             Seleccionador seleccionador = new Seleccionador(estudiantes);
-            seleccionador.seleccionadorEstudiantes();
+            seleccionador.mostrarEstudiante();
             
             WriteLine("Presione cualquier tecla para continuar");
             ReadKey(true); 
@@ -118,7 +118,7 @@ elige la música de tu preferencia";
         private void NombresEstudiantes()
         {
             Seleccionador seleccionador = new Seleccionador(estudiantes);
-            seleccionador.mostrarEstudiantes();
+            seleccionador.listaEstudiantes();
         }
 
         private void AgregarNombre()
