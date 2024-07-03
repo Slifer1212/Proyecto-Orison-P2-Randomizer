@@ -37,7 +37,7 @@
                 WriteLine($"Facilitador ejercicio: {segundoEstudiante}");Thread.Sleep(2000);
             } 
 
-            private string seleccionadorEstudiante(List<string>estudiantes , List<string> historial, string estudiante_excluido = null)
+            private string seleccionadorEstudiante(List<string>estudiantes , List<string> historial, string estudiante_excluido = null!)
             {
                 List<string> estudiante_disponible = new List<string>(estudiantes);
 
