@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using static System.Console;
 using NAudio.Wave;
 
@@ -8,19 +9,26 @@ namespace RandomizerApp
     class Juego
     {
         private static List<string> estudiantes = new List<string>
-        { 
-        "Abdul Djalo Encarnacion", "Awilka Jerome Puente",
-        "Coralis Natalie Cordones Santos", "Cristian Luna Rosario", "Deybby Angel Rosario Almonte",
-        "Enmanuel Alfonso Ferreras Vargas", "Esteban L?Pez Madera", "Felix David Reyes Duarte",
-        "Gabriel Jose Suarez Peralta", "Geraldo Alfredo Cabrera Puentes", "Isaac Cabrera Silverio",
-        "Jean Emmanuel Castellanos Jimenez", "Jonaifry Rodríguez De Jesús", "Jose Gerardo Severino Calderon",
-        "Jowell Sebastian Ramirez Wilson", "Juan David Vásquez Alcántara", "Levigne Fresco",
-        "Lissa Marie Gonz?Lez Feliz", "Ludwing Esaydel Santana Espinal", "Maria Franchesca Beltre Orozco",
-        "Melvin Emmanuel Marte Cuevas", "Pilar Medina Garc?A", "Porfirio Ramirez", "Wilbert Jos? Santos P?Rez",
-        "Yudit Maria Velasquez Matias", "Yunior Alexander Mo Mo"
+        {
+            "Abdul Djalo Encarnacion", "Awilka Jerome Puente",
+            "Coralis Natalie Cordones Santos", "Cristian Luna Rosario", "Deybby Angel Rosario Almonte",
+            "Enmanuel Alfonso Ferreras Vargas", "Esteban López Madera", "Felix David Reyes Duarte",
+            "Gabriel Jose Suarez Peralta", "Geraldo Alfredo Cabrera Puentes", "Isaac Cabrera Silverio",
+            "Jean Emmanuel Castellanos Jimenez", "Jonaifry Rodríguez De Jesús", "Jose Gerardo Severino Calderon",
+            "Jowell Sebastian Ramirez Wilson", "Juan David Vásquez Alcántara", "Levigne Fresco",
+            "Lissa Marie González Feliz", "Ludwing Esaydel Santana Espinal", "Maria Franchesca Beltre Orozco",
+            "Melvin Emmanuel Marte Cuevas", "Pilar Medina García", "Porfirio Ramirez", "Wilbert José Santos Pérez",
+            "Yudit Maria Velasquez Matias", "Yunior Alexander Mo Mo"
         };
+
         private WaveOutEvent? outputDevice;
         private AudioFileReader? audioFile;
+        private Seleccionador seleccionador;
+
+        public Juego()
+        {
+            seleccionador = new Seleccionador(estudiantes);
+        }
 
         public void Start()
         {
@@ -29,7 +37,7 @@ namespace RandomizerApp
 
         private void CorrerMenuPrincipal()
         {
-            string prompt = @"                    
+            string prompt = @"
 _____        _                 _____                    _                    _                
 |  __ \      | |               |  __ \                  | |                  (_)                
 | |__) | ___ | |_  _ __  ___   | |__) | __ _  _ __    __| |  ___   _ __ ___   _  ____ ___  _ __
@@ -39,7 +47,8 @@ _____        _                 _____                    _                    _
                                                                                                             
 Bienvenido a mi Randomizer retro, usa las flechas para moverte, dale a enter para usar las opciones y 
 elige la música de tu preferencia";   
-            string[] opciones = { "Vamos a Randomizar", "Ver nombres de los estudiantes",
+            string[] opciones = { "Vamos a Randomizar", "Ver nombres de los desarrolladores en vivo", 
+            "Ver nombres de los facilitadores de ejercicio",
             "Agregar Estudiante", "Eliminar estudiante",
             "Elige un soundtrack baby", "Parar la música","Generar CSV", "Salir" };
 
@@ -52,31 +61,34 @@ elige la música de tu preferencia";
                     Randomizar();
                     break;
                 case 1:
-                    NombresEstudiantes();
+                    seleccionador.verDesarrolladoresEnvivo();
                     CorrerMenuPrincipal();
                     break;
                 case 2:
-                    AgregarNombre();
+                    seleccionador.verFacilitadores();
                     CorrerMenuPrincipal();
                     break;
                 case 3:
-                    eliminarEstudiante();
+                    seleccionador.agregarEstudiante();
                     CorrerMenuPrincipal();
                     break;
-
                 case 4:
-                    EligeSoundTrack();
+                    seleccionador.eliminarEstudiante();
                     CorrerMenuPrincipal();
                     break;
                 case 5:
-                    PararMusica();
+                    EligeSoundTrack();
                     CorrerMenuPrincipal();
                     break;
                 case 6:
-                    generarCSV();
+                    PararMusica();
                     CorrerMenuPrincipal();
                     break;
                 case 7:
+                    seleccionador.generarCSV();
+                    CorrerMenuPrincipal();
+                    break;
+                case 8:
                     Salir();
                     break;
             }
@@ -92,7 +104,6 @@ elige la música de tu preferencia";
         private void Randomizar()
         {
             Clear();
-            Seleccionador seleccionador = new Seleccionador(estudiantes);
             seleccionador.mostrarEstudiante();
             
             WriteLine("Presione cualquier tecla para continuar");
@@ -113,18 +124,6 @@ elige la música de tu preferencia";
                     CorrerMenuPrincipal(); 
                     break;
             }
-        }
-
-        private void NombresEstudiantes()
-        {
-            Seleccionador seleccionador = new Seleccionador(estudiantes);
-            seleccionador.listaEstudiantes();
-        }
-
-        private void AgregarNombre()
-        {
-            Seleccionador seleccionador = new Seleccionador(estudiantes);
-            seleccionador.agregarEstudiante();
         }
 
         private void EligeSoundTrack()
@@ -186,16 +185,5 @@ elige la música de tu preferencia";
             WriteLine("Presione cualquier tecla para continuar...");
             ReadKey(true);
         }
-        private void generarCSV()
-        {
-            Seleccionador seleccionador = new Seleccionador(estudiantes);
-            seleccionador.generarCSV();
-        }
-        static void eliminarEstudiante()
-        {
-            Seleccionador seleccionador = new Seleccionador(estudiantes);
-            seleccionador.eliminarEstudiante();
-        }
-
     }
 }
