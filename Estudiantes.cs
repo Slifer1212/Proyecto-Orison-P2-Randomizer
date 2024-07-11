@@ -21,37 +21,44 @@ class Seleccionador
 
     public void mostrarEstudiante()
     {
+        Clear();
         if (desarrolladoresEnVivo.Count < 1 || facilitadoresEjercicio.Count < 1)
         {
             WriteLine("No hay suficientes estudiantes");
             return;
         }
+        int desarrolladorIndex;
+        int facilitadorEjercicioIndex;
 
         string desarrolladorEnVivo;
         string facilitadorEjercicio;
 
         do
         {
-            int desarrolladorIndex = rnd.Next(desarrolladoresEnVivo.Count);
+            desarrolladorIndex = rnd.Next(desarrolladoresEnVivo.Count);
             desarrolladorEnVivo = desarrolladoresEnVivo[desarrolladorIndex];
-
-            int facilitadorEjercicioIndex = rnd.Next(facilitadoresEjercicio.Count);
+            facilitadorEjercicioIndex = rnd.Next(facilitadoresEjercicio.Count);
             facilitadorEjercicio = facilitadoresEjercicio[facilitadorEjercicioIndex];
         } while (desarrolladorEnVivo == facilitadorEjercicio);
 
         nombresSeleccionados.Add($"Desarrollador en vivo: {desarrolladorEnVivo}");
         nombresSeleccionados.Add($"Facilitador Ejercicio: {facilitadorEjercicio}");
-
-        WriteLine($"Programador en vivo: {desarrolladorEnVivo}");
-        WriteLine($"Facilitador ejercicio: {facilitadorEjercicio}");
+        animacion_estudiantes(desarrolladorEnVivo , facilitadorEjercicio,desarrolladorIndex, facilitadorEjercicioIndex);
 
         desarrolladoresEnVivo.Remove(desarrolladorEnVivo);
         facilitadoresEjercicio.Remove(facilitadorEjercicio);
-
     }
+    private void animacion_estudiantes(string desarrolladorEnVivo, string facilitadorEjercicio , int desarrolladorIndex,int facilitadorEjercicioIndex)
+    {
+        
+    }
+
+
+
 
     public void verDesarrolladoresEnvivo()
     {
+        Clear();
         WriteLine("Desarrolladores en vivo:");
 
         foreach (var estudiante in desarrolladoresEnVivo)
@@ -65,6 +72,7 @@ class Seleccionador
 
     public void verFacilitadores()
     {
+        Clear();
         WriteLine("Facilitadores de ejercicio:");
 
         foreach (var estudiante in facilitadoresEjercicio)
@@ -78,6 +86,7 @@ class Seleccionador
 
     public void agregarEstudiante()
     {
+        Clear();
         WriteLine("Introduzca el nombre que desea introducir");
         ForegroundColor = ConsoleColor.Green;
         string nombre = ReadLine()!;
@@ -108,11 +117,12 @@ class Seleccionador
             WriteLine($"{nombre} ha sido agregado");
             WriteLine("Presione cualquier tecla para salir");
             ReadKey(true);
-        }
+        }ResetColor();
     }
 
     public void eliminarEstudiante()
     {
+        Clear();
         WriteLine("Introduzca el nombre que desea eliminar:");
         string nombre = ReadLine()!.ToUpper();
 
@@ -144,6 +154,7 @@ class Seleccionador
 
     public void generarCSV()
     {
+        Clear();
         string filePath = "nombresSeleccionados.csv";
         using (StreamWriter writer = new StreamWriter(filePath))
         {

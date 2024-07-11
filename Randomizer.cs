@@ -50,7 +50,7 @@ elige la música de tu preferencia";
             string[] opciones = { "Vamos a Randomizar", "Ver nombres de los desarrolladores en vivo", 
             "Ver nombres de los facilitadores de ejercicio",
             "Agregar Estudiante", "Eliminar estudiante",
-            "Elige un soundtrack baby", "Parar la música","Generar CSV", "Salir" };
+            "Elige un soundtrack baby", "Parar la música","Generar CSV", "Salir"};
 
             Menu menuPrincipal = new Menu(prompt, opciones);
             int seleccionado = menuPrincipal.Run();
@@ -91,6 +91,7 @@ elige la música de tu preferencia";
                 case 8:
                     Salir();
                     break;
+
             }
         }
 
@@ -128,6 +129,7 @@ elige la música de tu preferencia";
 
         private void EligeSoundTrack()
         {
+
             string[] opciones = { "Tetris", "Mario", "Contra", "Volver al menu anterior" };
             string prompt = "Elige un tema retro";
             Menu menuMusica = new Menu(prompt, opciones);
@@ -168,6 +170,7 @@ elige la música de tu preferencia";
 
         private void PararMusica()
         {
+            Clear();
             if (outputDevice != null)
             {
                 outputDevice.Stop();
