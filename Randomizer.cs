@@ -50,7 +50,7 @@ elige la música de tu preferencia";
             string[] opciones = { "Vamos a Randomizar", "Ver nombres de los desarrolladores en vivo", 
             "Ver nombres de los facilitadores de ejercicio",
             "Agregar Estudiante", "Eliminar estudiante",
-            "Elige un soundtrack baby", "Parar la música","Generar CSV", "Salir"};
+            "Elige un soundtrack ", "Parar la música","Generar CSV", "Salir"};
 
             Menu menuPrincipal = new Menu(prompt, opciones);
             int seleccionado = menuPrincipal.Run();
