@@ -105,7 +105,7 @@ elige la música de tu preferencia";
         private void Randomizar()
         {
             Clear();
-             ReproducirMusica(@"C:\Users\Supre\Desktop\Proyecto Orison P2\Sonidos\Mario Kart 64  Item Box Break And Roulette Jingle Sound.mp3");
+            ReproducirMusica(@"C:\Users\Supre\Desktop\Proyecto Orison P2\Sonidos\Mario Kart 64  Item Box Break And Roulette Jingle Sound.mp3");
             seleccionador.mostrarEstudiante();
             
             WriteLine("Presione cualquier tecla para continuar");
