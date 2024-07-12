@@ -188,7 +188,7 @@ namespace RandomizerApp
 
                 if (conteo == listado_Estudiantes.Count)
                 {
-                    WriteLine("Estudiante no encontrado.");
+                    WriteLine("No se ha encontrado el estudiantes.");
                 }
                 else
                 {
@@ -219,6 +219,7 @@ namespace RandomizerApp
             WriteLine($"CSV generado en {filePath}");
             WriteLine("Presione cualquier tecla para salir");
             ReadKey(true);
+
         }
     }
 }
