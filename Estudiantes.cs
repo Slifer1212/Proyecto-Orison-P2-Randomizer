@@ -53,17 +53,17 @@ namespace RandomizerApp
             facilitadoresEjercicio.Remove(facilitadorEjercicio);
         }
 
-        private void animacion_estudiantes(string desarrolladorEnVivo, string facilitadorEjercicio, int desarrolladorIndex, int facilitadorEjercicioIndex)
+        private async void animacion_estudiantes(string desarrolladorEnVivo, string facilitadorEjercicio, int desarrolladorIndex, int facilitadorEjercicioIndex)
         {
-            for (int i = 0; i < 50; i++) 
+            for (int i = 0; i < 30; i++) 
             {
                 int highlightedIndex = rnd.Next(listado_Estudiantes.Count);
-                Console.Clear();
+                Clear();
                 PrintNombresConResaltado(listado_Estudiantes, highlightedIndex);
-                Thread.Sleep(200); 
+                Thread.Sleep(100); 
             }
 
-            Console.Clear();
+            Clear();
             for (int i = 0; i < listado_Estudiantes.Count; i++)
             {
                 if (listado_Estudiantes[i] == desarrolladorEnVivo)
@@ -80,9 +80,9 @@ namespace RandomizerApp
                 }
                 WriteLine(listado_Estudiantes[i]);
             }
-            Console.ResetColor();
-            WriteLine("\nDesarrollador en vivo: " + desarrolladorEnVivo);
-            WriteLine("Facilitador Ejercicio: " + facilitadorEjercicio);
+            ResetColor();
+            WriteLine("\nDesarrollador en vivo: " + desarrolladorEnVivo); 
+            WriteLine("Facilitador Ejercicio: " + facilitadorEjercicio); await Task.Delay(500);
 
             listado_Estudiantes.Remove(desarrolladorEnVivo);
             listado_Estudiantes.Remove(facilitadorEjercicio);
@@ -94,16 +94,16 @@ namespace RandomizerApp
             {
                 if (i == highlightedIndex)
                 {
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    BackgroundColor = ConsoleColor.Yellow;
+                    ForegroundColor = ConsoleColor.Black;
                 }
                 else
                 {
-                    Console.ResetColor();
+                    ResetColor();
                 }
-                Console.WriteLine(nombres[i]);
+                WriteLine(nombres[i]);
             }
-            Console.ResetColor();
+           ResetColor();
         }
 
         public void verDesarrolladoresEnvivo()

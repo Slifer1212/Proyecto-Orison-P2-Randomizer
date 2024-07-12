@@ -105,6 +105,7 @@ elige la música de tu preferencia";
         private void Randomizar()
         {
             Clear();
+             ReproducirMusica(@"C:\Users\Supre\Desktop\Proyecto Orison P2\Sonidos\Mario Kart 64  Item Box Break And Roulette Jingle Sound.mp3");
             seleccionador.mostrarEstudiante();
             
             WriteLine("Presione cualquier tecla para continuar");
@@ -164,8 +165,6 @@ elige la música de tu preferencia";
             outputDevice = new WaveOutEvent();
             outputDevice.Init(audioFile);
             outputDevice.Play();
-            WriteLine("Presione cualquier tecla para volver al menú principal...");
-            ReadKey(true);
         }
 
         private void PararMusica()
