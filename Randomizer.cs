@@ -8,17 +8,13 @@ namespace RandomizerApp
 {
     class Juego
     {
+        //Cambios git
         private static List<string> estudiantes = new List<string>
         {
             "Abdul Djalo Encarnacion", "Awilka Jerome Puente",
             "Coralis Natalie Cordones Santos", "Cristian Luna Rosario", "Deybby Angel Rosario Almonte",
             "Enmanuel Alfonso Ferreras Vargas", "Esteban López Madera", "Felix David Reyes Duarte",
-            "Gabriel Jose Suarez Peralta", "Geraldo Alfredo Cabrera Puentes", "Isaac Cabrera Silverio",
-            "Jean Emmanuel Castellanos Jimenez", "Jonaifry Rodríguez De Jesús", "Jose Gerardo Severino Calderon",
-            "Jowell Sebastian Ramirez Wilson", "Juan David Vásquez Alcántara", "Levigne Fresco",
-            "Lissa Marie González Feliz", "Ludwing Esaydel Santana Espinal", "Maria Franchesca Beltre Orozco",
-            "Melvin Emmanuel Marte Cuevas", "Pilar Medina García", "Porfirio Ramirez", "Wilbert José Santos Pérez",
-            "Yudit Maria Velasquez Matias", "Yunior Alexander Mo Mo"
+            "Gabriel Jose Suarez Peralta", "Geraldo Alfredo Cabrera Puentes", "Isaac Cabrera Silverio"
         };
 
         private WaveOutEvent? outputDevice;
